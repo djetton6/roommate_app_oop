@@ -1,0 +1,21 @@
+Notes for us for OOP
+Title: Roommate Calculator & Bill
+Description: An app that gets as input the amount of the bill for a particular period and the amount owned by occupancy,
+number of days.
+OUTPUT: returns how much it costs for each person and generates a PDF Report.
+
+OBJECTS:
+Trick to think about how much do you need: make objects out those nouns(object types = classes -> lead to object instances
+BILL:
+    amount(attribute of bill)
+    period
+    due_date
+
+ROOMMATE:
+    name:
+    days_in_house
+    pays({needs bill, or the instance of the BILL)
+
+PDF_Report: (what necessary attributes)
+     filename:
+     generate(roommates1, roommate 2, BILL)
