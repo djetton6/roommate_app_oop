@@ -23,7 +23,7 @@ class Roommate:
     # what does the roommate do> - Pays!
 
     def pays_bill(self, bill):
-        pass
+        return bill.amount / 2
 
 
 class PDF_Reader:
@@ -36,3 +36,10 @@ class PDF_Reader:
 
     def generate(self, roommate1, roommate2, bill):
         pass
+
+
+bill = Bill(amount=120, period='March 2021')
+desmend = Roommate(name="Desmend", days_in_house=20)
+mary = Roommate(name="Dan", days_in_house=15)
+
+print(desmend.pays_bill(bill=bill))
