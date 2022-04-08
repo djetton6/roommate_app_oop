@@ -22,8 +22,10 @@ class Roommate:
 
     # what does the roommate do> - Pays!
 
-    def pays_bill(self, bill):
-        return bill.amount / 2
+    def pays_bill(self, bill, roommate2):
+        weight = self.days_in_house / (self.days_in_house + roommate2.days_in_house)
+        to_pay = bill.amount * weight
+        return to_pay
 
 
 class PDF_Reader:
@@ -40,6 +42,7 @@ class PDF_Reader:
 
 bill = Bill(amount=120, period='March 2021')
 desmend = Roommate(name="Desmend", days_in_house=20)
-mary = Roommate(name="Dan", days_in_house=15)
+mary = Roommate(name="Dan", days_in_house=25)
 
-print(desmend.pays_bill(bill=bill))
+print('Desmend pays:', desmend.pays_bill(bill=bill, roommate2=mary))
+print('Mary pays:', mary.pays_bill(bill=bill, roommate2=desmend))
