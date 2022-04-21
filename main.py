@@ -1,3 +1,6 @@
+from fpdf import FPDF
+
+
 class Bill:
     """
     Object that contains bill details like total amount and time period of bill
@@ -34,15 +37,28 @@ class PDF_Reader:
     """
 
     def __init__(self, file_name):
-        self.file_name
+        self.file_name = file_name
 
     def generate(self, roommate1, roommate2, bill):
-        pass
+        pdf = FPDF(orientation='P', unit='pt', format='A4')
+        pdf.add_page()
+
+        # Insert Title
+        pdf.set_font(family='Arial', size=30, style='B')
+        # Insertion of period label
+        pdf.cell(w=0, h=80, txt="Roommate Monthly Bill", border=0, align="C", ln=1)
+        # Insertion of period and month
+        pdf.cell(w=100, h=40, txt=roommate1.name, border=0)
+        pdf.cell(w=170, h=40, txt=str(roommate1.pays_bill(bill=bill, roommate2=roommate2)), border=0, ln=1)
+
+        pdf.output(self.file_name)
 
 
 bill = Bill(amount=120, period='March 2021')
 desmend = Roommate(name="Desmend", days_in_house=20)
 mary = Roommate(name="Dan", days_in_house=25)
 
-print('Desmend pays:', desmend.pays_bill(bill=bill, roommate2=mary))
-print('Mary pays:', mary.pays_bill(bill=bill, roommate2=desmend))
+desmend.pays_bill(bill=bill, roommate2=mary)
+mary.pays_bill(bill=bill, roommate2=desmend)
+pdf_report = PDF_Reader(file_name='Report1.pdf')
+pdf_report.generate(roommate1=desmend, roommate2=mary, bill=bill)
