@@ -40,12 +40,15 @@ class PDF_Reader:
         self.file_name = file_name
 
     def generate(self, roommate1, roommate2, bill):
-        roommate1_pay  = str(round(roommate1.pays_bill(bill=bill, roommate2=roommate2), 2))
-        roommate2_pay  = str(round(roommate2.pays_bill(bill=bill, roommate2=roommate2), 2))
+        roommate1_pay = str(round(roommate1.pays_bill(bill=bill, roommate2=roommate2), 2))
+        roommate2_pay = str(round(roommate2.pays_bill(bill=bill, roommate2=roommate1), 2))
 
 
         pdf = FPDF(orientation='P', unit='pt', format='A4')
         pdf.add_page()
+
+        #Insert Photo/Icon
+        pdf.image(name="house_icon.png", w=100, h=100)
 
         # Insert Title
         pdf.set_font(family='Arial', size=30, style='B')
