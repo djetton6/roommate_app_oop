@@ -1,3 +1,6 @@
+import os
+import webbrowser
+
 from fpdf import FPDF
 
 
@@ -53,8 +56,10 @@ class PDF_Reader:
         # Insert Title
         pdf.set_font(family='Arial', size=30, style='B')
         # Insertion of period label
+        pdf.set_font(family="Times", size=14, style="I")
         pdf.cell(w=0, h=80, txt="Roommate Monthly Bill", border=0, align="C", ln=1)
         # Insertion of period and month
+        pdf.set_font(family="Helvetica", size=20, style="B")
         pdf.cell(w=250, h=40, txt=roommate1.name, border=0)
         pdf.cell(w=200, h=40, txt=roommate1_pay, border=0, ln=1)
 
@@ -63,6 +68,7 @@ class PDF_Reader:
         pdf.cell(w=200, h=40, txt=roommate2_pay, border=0, ln=1)
 
         pdf.output(self.file_name)
+        webbrowser.open('file://' + os.path.realpath(self.file_name))
 
 
 bill = Bill(amount=120, period='March 2021')
