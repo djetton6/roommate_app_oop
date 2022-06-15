@@ -46,11 +46,10 @@ class PDF_Reader:
         roommate1_pay = str(round(roommate1.pays_bill(bill=bill, roommate2=roommate2), 2))
         roommate2_pay = str(round(roommate2.pays_bill(bill=bill, roommate2=roommate1), 2))
 
-
         pdf = FPDF(orientation='P', unit='pt', format='A4')
         pdf.add_page()
 
-        #Insert Photo/Icon
+        # Insert Photo/Icon
         pdf.image(name="house_icon.png", w=100, h=100)
 
         # Insert Title
@@ -63,7 +62,7 @@ class PDF_Reader:
         pdf.cell(w=250, h=40, txt=roommate1.name, border=0)
         pdf.cell(w=200, h=40, txt=roommate1_pay, border=0, ln=1)
 
-                # Insertion of period and month
+        # Insertion of period and month
         pdf.cell(w=250, h=40, txt=roommate2.name, border=0)
         pdf.cell(w=200, h=40, txt=roommate2_pay, border=0, ln=1)
 
@@ -71,7 +70,10 @@ class PDF_Reader:
         webbrowser.open('file://' + os.path.realpath(self.file_name))
 
 
-bill = Bill(amount=120, period='March 2021')
+bill = float(input("Hi user, enter the bil amount!"))
+print(f"Bill is {bill}")
+
+bill = Bill(amount=bill, period='March 2021')
 desmend = Roommate(name="Desmend", days_in_house=20)
 mary = Roommate(name="Dan", days_in_house=25)
 
