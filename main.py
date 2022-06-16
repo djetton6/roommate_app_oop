@@ -70,14 +70,22 @@ class PDF_Reader:
         webbrowser.open('file://' + os.path.realpath(self.file_name))
 
 
-bill = float(input("Hi user, enter the bil amount!"))
-print(f"Bill is {bill}")
+amount = float(input("Hi user, enter the bil amount!"))
+period = input("What is the bill period?")
+name1 = input("What is your name?")
 
-bill = Bill(amount=bill, period='March 2021')
-desmend = Roommate(name="Desmend", days_in_house=20)
-mary = Roommate(name="Dan", days_in_house=25)
+print(f"Bill is {amount}")
+days_in_house1 = int(input('How much did you stay in the apt.?'))
 
-desmend.pays_bill(bill=bill, roommate2=mary)
-mary.pays_bill(bill=bill, roommate2=desmend)
+name2 = input("What is the other flatmate?")
+days_in_house2 = int(input('How much did you stay in the apt.?'))
+
+
+bill = Bill(amount=amount, period=period)
+flatmate1 = Roommate(name=name1, days_in_house=days_in_house1)
+flatmate2 = Roommate(name=name2, days_in_house=days_in_house2)
+
+flatmate1.pays_bill(bill=bill, roommate2=flatmate2)
+flatmate2.pays_bill(bill=bill, roommate2=flatmate1)
 pdf_report = PDF_Reader(file_name='Report1.pdf')
-pdf_report.generate(roommate1=desmend, roommate2=mary, bill=bill)
+pdf_report.generate(roommate1=flatmate1, roommate2=flatmate2, bill=bill)
